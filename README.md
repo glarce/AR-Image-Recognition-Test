@@ -1,1 +1,1 @@
-# AR-Image-Recognition-Test
+# AR Image Recognition Test
