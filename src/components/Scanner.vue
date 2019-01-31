@@ -1,10 +1,6 @@
 <template>
   <div class="scanner">
     <div class="container"><video id="preview" class="video-back" playsinline></video></div>
-
-    <ul>
-      <li v-for="code in codes">{{ code }}</li>
-    </ul>
   </div>
 </template>
 
@@ -26,7 +22,7 @@ export default {
       }
     },
     scan: function (contents) {
-      this.codes.push(contents)
+      this.$emit('code', contents)
     },
     error: function (e) {
       alert(e)

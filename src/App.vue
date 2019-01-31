@@ -1,5 +1,5 @@
 <template>
-  <div id="app"><scanner /></div>
+  <div id="app"><scanner @code="checkCode" /></div>
 </template>
 
 <script>
@@ -9,6 +9,11 @@ export default {
   name: 'app',
   components: {
     Scanner
+  },
+  methods: {
+    checkCode: function (value) {
+      alert(value)
+    }
   }
 }
 </script>
