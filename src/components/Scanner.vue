@@ -38,7 +38,7 @@ export default {
         }
       })
       .catch(function (e) {
-        console.error(e)
+        alert(e)
       })
   }
 }
@@ -55,5 +55,10 @@ export default {
   align-items: center;
 
   background-image: linear-gradient(45deg, #434343 0%, black 100%);
+
+  video {
+    max-width: 100vw;
+    max-height: 100vh;
+  }
 }
 </style>
