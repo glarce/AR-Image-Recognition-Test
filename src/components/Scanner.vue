@@ -1,6 +1,6 @@
 <template>
   <div class="scanner">
-    <div class="container"><video id="preview"></video></div>
+    <div class="container"><video id="preview" class="video-back" playsinline></video></div>
 
     <ul>
       <li v-for="code in codes">{{ code }}</li>
@@ -18,28 +18,28 @@ export default {
     }
   },
   methods: {
+    startScanner: function (cameras) {
+      if (cameras.length > 0) {
+        this.scanner.start(cameras[0])
+      } else {
+        alert('No cameras found.')
+      }
+    },
     scan: function (contents) {
       this.codes.push(contents)
+    },
+    error: function (e) {
+      alert(e)
     }
   },
   mounted: function () {
-    let self = this
-
-    self.scanner = new Instascan.Scanner({
+    this.scanner = new Instascan.Scanner({
       video: document.getElementById('preview')
     })
-    self.scanner.addListener('scan', this.scan)
+    this.scanner.addListener('scan', this.scan)
     Instascan.Camera.getCameras()
-      .then(function (cameras) {
-        if (cameras.length > 0) {
-          self.scanner.start(cameras[0])
-        } else {
-          console.error('No cameras found.')
-        }
-      })
-      .catch(function (e) {
-        alert(e)
-      })
+      .then(this.startScanner)
+      .catch(this.error)
   }
 }
 </script>
