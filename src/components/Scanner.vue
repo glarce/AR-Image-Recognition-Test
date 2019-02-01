@@ -1,6 +1,8 @@
 <template>
   <div class="scanner">
-    <div class="container"><video id="preview" class="video-back" playsinline></video></div>
+    <div class="container">
+      <video id="preview" class="video-back" playsinline></video>
+    </div>
   </div>
 </template>
 
@@ -10,7 +12,8 @@ export default {
   data: () => {
     return {
       codes: [],
-      scanner: null
+      scanner: null,
+      isLoading: true
     }
   },
   methods: {
@@ -29,10 +32,18 @@ export default {
     }
   },
   mounted: function () {
+    // Create scanner
     this.scanner = new Instascan.Scanner({
-      video: document.getElementById('preview')
+      video: document.getElementById('preview'),
+      mirror: false,
+      backgroundScan: false,
+      scanPeriod: 5
     })
+
+    // Add event listener for 'scan'
     this.scanner.addListener('scan', this.scan)
+
+    // Start scanning
     Instascan.Camera.getCameras()
       .then(this.startScanner)
       .catch(this.error)
@@ -42,6 +53,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -49,8 +67,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background-image: linear-gradient(45deg, #434343 0%, black 100%);
 
   video {
     max-width: 100vw;
