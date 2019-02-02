@@ -1,0 +1,16 @@
+{
+  "prefix": "",
+  "codes": [
+    {
+      "code": "",
+      "type": "video/mp4",
+      "path": ""
+    },
+    {
+      "code": "",
+      "type": "image",
+      "displayFor": "5",
+      "path": ""
+    }
+  ]
+}
