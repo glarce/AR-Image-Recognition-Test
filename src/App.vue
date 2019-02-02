@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <splash v-if="isSplash" @scan="isSplash = false; isScanning = true" />
-    <scanner v-if="isScanning" @code="checkCode" /></div>
+    <scanner v-if="isScanning" @sendCode="reciveCode" />
+    <media v-if="isPlayingMedia" :code="code" :codes="codes" />
+  </div>
 </template>
 
 <script>
@@ -10,24 +12,38 @@ import 'typeface-roboto'
 import Splash from './components/Splash.vue'
 
 import Scanner from './components/Scanner.vue'
+import Media from './components/Media.vue'
 
 export default {
   name: 'app',
   components: {
     Splash,
 
-    Scanner
+    Scanner,
+    Media
   },
   data: () => {
     return {
       isSplash: true,
-      isScanning: false
+      isScanning: false,
+      isPlayingMedia: false,
+
+      codes: {},
+      code: ''
     }
   },
   methods: {
-    checkCode: function (value) {
-      alert(value)
+    parseCodes: function (codes) {
+      this.codes = codes.data
+    },
+    reciveCode: function (code) {
+      this.code = code
+      this.isPlayingMedia = true
+      this.isScanning = false
     }
+  },
+  mounted: function () {
+    this.axios.get('codes.json').then(this.parseCodes)
   }
 }
 </script>

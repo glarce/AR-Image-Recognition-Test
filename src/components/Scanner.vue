@@ -3,17 +3,24 @@
     <div class="container">
       <video id="preview" class="video-back" playsinline></video>
     </div>
+
+    <md-dialog-alert
+      :md-active.sync="hasError"
+      md-title="Error"
+      :md-content="errorText" />
   </div>
 </template>
 
-<script>
-export default {
+<script>export default {
   name: 'scanner',
   data: () => {
     return {
       codes: [],
       scanner: null,
-      isLoading: true
+      isLoading: true,
+
+      hasError: false,
+      errorText: ''
     }
   },
   methods: {
@@ -21,14 +28,16 @@ export default {
       if (cameras.length > 0) {
         this.scanner.start(cameras[0])
       } else {
-        alert('No cameras found.')
+        this.errorText = 'No camera detected'
+        this.hasError = true
       }
     },
     scan: function (contents) {
-      this.$emit('code', contents)
+      this.$emit('sendCode', contents)
     },
     error: function (e) {
-      alert(e)
+      this.errorText = `An error has occurred. Please use safari on Apple products and Chrome on Android and enable camera. ${e}`
+      this.hasError = true
     }
   },
   mounted: function () {
