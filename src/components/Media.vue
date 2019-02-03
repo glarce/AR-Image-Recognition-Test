@@ -49,7 +49,7 @@ export default
         this.vidSrc = codeJSON.src
         this.vidType = codeJSON.type
       }
-      else if (this.getURLParam(this.codes.urlParam) == this.code)
+      else if (this.getURLParam(this.code, this.codes.urlParam) == this.code)
       {
         this.vidSrc = codeJSON.src
         this.vidType = codeJSON.type
