@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "4837be44fe7f1853d548",
-    "url": "/AR-Image-Recognition-Test/js/app.46557717.js"
+    "revision": "04b2196056a4a823c97a",
+    "url": "/AR-Image-Recognition-Test/js/app.5d1152ea.js"
   },
   {
-    "revision": "6cdcc3cb01f46601fa47",
-    "url": "/AR-Image-Recognition-Test/js/chunk-vendors.35f6659d.js"
+    "revision": "962b0972834b9f60fa0d",
+    "url": "/AR-Image-Recognition-Test/js/chunk-vendors.0ff29688.js"
   },
   {
     "revision": "285467176f7fe6bb6a9c6873b3dad2cc",
@@ -120,11 +120,11 @@ self.__precacheManifest = [
     "url": "/AR-Image-Recognition-Test/fonts/roboto-latin-400italic.9680d5a0.woff"
   },
   {
-    "revision": "bfeb52160cac2d0be6472bc929c0be0c",
+    "revision": "5fc6f627bf11e1dad135d31a02d7944c",
     "url": "/AR-Image-Recognition-Test/index.html"
   },
   {
-    "revision": "0cfef60d58625e91531b4de55e61e58a",
+    "revision": "4323a32b2b5860c412d8f891c048ce96",
     "url": "/AR-Image-Recognition-Test/codes.json"
   },
   {
