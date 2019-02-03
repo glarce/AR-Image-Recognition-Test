@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "04b2196056a4a823c97a",
-    "url": "/AR-Image-Recognition-Test/js/app.5d1152ea.js"
+    "revision": "0cf8983c579cbbff560a",
+    "url": "/AR-Image-Recognition-Test/js/app.1b9bbf06.js"
   },
   {
     "revision": "962b0972834b9f60fa0d",
@@ -120,7 +120,7 @@ self.__precacheManifest = [
     "url": "/AR-Image-Recognition-Test/fonts/roboto-latin-400italic.9680d5a0.woff"
   },
   {
-    "revision": "5fc6f627bf11e1dad135d31a02d7944c",
+    "revision": "def85c32c0f1d108afb25149cad61fa8",
     "url": "/AR-Image-Recognition-Test/index.html"
   },
   {
