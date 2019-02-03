@@ -1,10 +1,8 @@
 <template>
 <div class="media">
   <div class="container">
-    <img v-if="isImg" :src="imgSrc">
-
-    <video v-if="isVid" controls>
-      <source :src="vidSrc" type="video/mp4">
+    <video autoplay>
+      <source :src="vidSrc" :type="vidType">
     </video>
   </div>
 </div>
@@ -16,15 +14,22 @@ export default
   name: 'media',
   props: ['code', 'codes'],
   data: () => (
-  {
-    isVid: false,
-    vidSrc: '',
+    {
+      vidSrc: '',
+      vidType: ''
+    }),
+  mounted: function () {
+    for (var i = 0; i < this.codes.codes.length; i++) {
+      const codeJSON = this.codes.codes[i]
 
-    isImg: false,
-    imgSrc: ''
-  }),
-  mounted: function() {
-
+      if (codeJSON.code == this.code) {
+        this.vidSrc = codeJSON.src
+        this.vidType = codeJSON.type
+      } else if (this.codes.prefix + codeJSON.code == this.code) {
+        this.vidSrc = codeJSON.src
+        this.vidType = codeJSON.type
+      }
+    }
   }
 }
 </script>

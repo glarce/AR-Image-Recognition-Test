@@ -1,16 +1,11 @@
 {
-  "prefix": "",
+  "prefix": "/glarce.github.io/AR-Image-Recognition-Test/?qr=",
+  "urlParam": "qr",
   "codes": [
     {
-      "code": "",
+      "code": "nightSky",
       "type": "video/mp4",
-      "path": ""
-    },
-    {
-      "code": "",
-      "type": "image",
-      "displayFor": "5",
-      "path": ""
+      "src": "videos/night_sky.mp4"
     }
   ]
 }
