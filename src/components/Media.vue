@@ -34,5 +34,18 @@ export default
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  video {
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+}
 </style>
