@@ -1,15 +1,12 @@
 <template>
-  <div id="app">
-    <splash
-      v-if="isSplash"
-      @scan="
+<div id="app">
+  <splash v-if="isSplash" @scan="
         isSplash = false;
         isScanning = true;
-      "
-    />
-    <scanner v-if="isScanning" @sendCode="reciveCode" />
-    <media v-if="isPlayingMedia" :code="code" :codes="codes" />
-  </div>
+      " />
+  <scanner v-if="isScanning" @sendCode="reciveCode" />
+  <media v-if="isPlayingMedia" :code="code" :codes="codes" @splash="isPlayingMedia = false;isSplash = true" />
+</div>
 </template>
 
 <script>
@@ -30,7 +27,8 @@ export default
     Scanner,
     Media
   },
-  data: () => {
+  data: () =>
+  {
     return {
       isSplash: true,
       isScanning: false,
@@ -43,31 +41,38 @@ export default
   },
   methods:
   {
-    getURLParam: function (sParam) {
+    getURLParam: function(sParam)
+    {
       var sPageURL = window.location.search.substring(1)
       var sURLVariables = sPageURL.split('&')
-      for (var i = 0; i < sURLVariables.length; i++) {
+      for (var i = 0; i < sURLVariables.length; i++)
+      {
         var sParameterName = sURLVariables[i].split('=')
-        if (sParameterName[0] == sParam) {
+        if (sParameterName[0] == sParam)
+        {
           return decodeURIComponent(sParameterName[1])
         }
       }
     },
-    parseCodes: function (codes) {
+    parseCodes: function(codes)
+    {
       this.codes = codes.data
 
-      if (this.getURLParam(this.codes.urlParam) != undefined) {
+      if (this.getURLParam(this.codes.urlParam) != undefined)
+      {
         this.reciveCode(this.getURLParam(this.codes.urlParam))
       }
     },
-    reciveCode: function (code) {
+    reciveCode: function(code)
+    {
       this.code = code
       this.isScanning = false
       this.isSplash = false
       this.isPlayingMedia = true
     }
   },
-  mounted: function () {
+  mounted: function()
+  {
     this.axios.get('codes.json').then(this.parseCodes)
   }
 }
@@ -78,15 +83,15 @@ $material-icons-font-path: "~material-icons/iconfont/";
 @import "~material-icons/iconfont/material-icons.scss";
 
 body {
-  margin: 0;
-  overflow: hidden;
+    margin: 0;
+    overflow: hidden;
 }
 
 #app {
-  font-family: "roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin: 0;
+    font-family: "roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    margin: 0;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
 <div class="media">
   <div class="container">
-    <video autoplay>
+    <video autoplay id="video">
       <source :src="vidSrc" :type="vidType">
     </video>
   </div>
@@ -14,38 +14,59 @@ export default
   name: 'media',
   props: ['code', 'codes'],
   data: () => (
+  {
+    vidSrc: '',
+    vidType: ''
+  }),
+  methods:
+  {
+    done: function()
     {
-      vidSrc: '',
-      vidType: ''
-    }),
-  mounted: function () {
-    for (var i = 0; i < this.codes.codes.length; i++) {
+      this.$emit('splash')
+    }
+  },
+  mounted: function()
+  {
+    for (var i = 0; i < this.codes.codes.length; i++)
+    {
       const codeJSON = this.codes.codes[i]
 
-      if (codeJSON.code == this.code) {
+      if (codeJSON.code == this.code)
+      {
         this.vidSrc = codeJSON.src
         this.vidType = codeJSON.type
-      } else if (this.codes.prefix + codeJSON.code == this.code) {
+      }
+      else if (this.codes.prefix + codeJSON.code == this.code)
+      {
         this.vidSrc = codeJSON.src
         this.vidType = codeJSON.type
       }
     }
+
+    if (this.vidSrc === '')
+    {
+      alert('This qr code dosen\'t have a video embeded')
+
+      this.$emit('splash')
+    }
+
+    document.getElementById('video').addEventListener('ended', this.done, false);
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .container {
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  video {
-    max-width: 100vw;
-    max-height: 100vh;
-  }
+    video {
+        max-width: 100vw;
+        max-height: 100vh;
+    }
 }
 </style>
