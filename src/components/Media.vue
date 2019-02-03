@@ -20,6 +20,19 @@ export default
   }),
   methods:
   {
+    getURLParamFromString: function(string, sParam)
+    {
+      var sPageURL = string.search.substring(1)
+      var sURLVariables = sPageURL.split('&')
+      for (var i = 0; i < sURLVariables.length; i++)
+      {
+        var sParameterName = sURLVariables[i].split('=')
+        if (sParameterName[0] == sParam)
+        {
+          return decodeURIComponent(sParameterName[1])
+        }
+      }
+    },
     done: function()
     {
       this.$emit('splash')
@@ -36,7 +49,7 @@ export default
         this.vidSrc = codeJSON.src
         this.vidType = codeJSON.type
       }
-      else if (this.codes.prefix + codeJSON.code == this.code)
+      else if (this.getURLParam(this.codes.urlParam) == this.code)
       {
         this.vidSrc = codeJSON.src
         this.vidType = codeJSON.type
