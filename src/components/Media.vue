@@ -1,7 +1,7 @@
 <template>
 <div class="media">
   <div class="container">
-    <video autoplay id="video">
+    <video autoplay controls="true" id="video">
       <source :src="vidSrc" :type="vidType">
     </video>
   </div>
@@ -22,7 +22,7 @@ export default
   {
     getURLParamFromString: function(string, sParam)
     {
-      var sPageURL = string.search.substring(1)
+      var sPageURL = string.substring(string.indexOf('?') + 1)
       var sURLVariables = sPageURL.split('&')
       for (var i = 0; i < sURLVariables.length; i++)
       {
@@ -44,12 +44,14 @@ export default
     {
       const codeJSON = this.codes.codes[i]
 
-      if (codeJSON.code == this.code)
+      if (codeJSON.code === codeJSON.code)
       {
+        console.log(true);
+
         this.vidSrc = codeJSON.src
         this.vidType = codeJSON.type
       }
-      else if (this.getURLParam(this.code, this.codes.urlParam) == this.code)
+      else if (this.getURLParamFromString(this.code, this.codes.urlParam) === codeJSON.code)
       {
         this.vidSrc = codeJSON.src
         this.vidType = codeJSON.type
