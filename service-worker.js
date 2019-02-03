@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/AR-Image-Recognition-Test/precache-manifest.0ced84f5cec437af4c0df4cfdcbf8547.js"
+  "/AR-Image-Recognition-Test/precache-manifest.56f314e25a3bac7c468f7ee0084b9929.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "AR_QR_Code"});
